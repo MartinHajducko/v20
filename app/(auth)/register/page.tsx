@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { Icons } from "@/components/icons"
 import { UserAuthForm } from "@/components/dashboard/user-auth-form"
+import Image from "next/image"
 
 export default function RegisterPage() {
   return (
@@ -16,21 +17,22 @@ export default function RegisterPage() {
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
-            <Icons.logo className="mx-auto h-6 w-6" />
-            <h1 className="text-2xl font-bold">Create an account</h1>
+            {/* <Icons.logo className="mx-auto h-6 w-6" /> */}
+            <Image className="mx-auto h-6 w-6" height={24} width={24} src="/logo.svg" alt="app logo" /> 
+            <h1 className="text-2xl font-bold">Registračný formulár</h1>
             <p className="text-sm text-slate-600">
-              Enter your email below to create your account
+              Pre registráciu prosím zadaj nižšie tvoj e-mail
             </p>
           </div>
           <UserAuthForm />
           <p className="px-8 text-center text-sm text-slate-600">
-            By clicking continue, you agree to our{" "}
+            Kliknutím na pokračovať, súhlasíš s:{" "}<br />
             <Link href="/terms" className="underline hover:text-brand">
-              Terms of Service
+              VOP
             </Link>{" "}
-            and{" "}
+            a{" "}
             <Link href="/privacy" className="underline hover:text-brand">
-              Privacy Policy
+              Ochrana os. údajov
             </Link>
             .
           </p>

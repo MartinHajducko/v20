@@ -14,6 +14,12 @@ export const dashboardConfig: DashboardConfig = {
   ],
   sidebarNav: [
     {
+      title: "Banka otazok",
+      href: "/dashboard/questions",
+      icon: "post",
+      admin: true,
+    },
+    {
       title: "Posts",
       href: "/dashboard",
       icon: "post",

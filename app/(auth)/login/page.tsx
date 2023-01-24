@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { Icons } from "@/components/icons"
 import { UserAuthForm } from "@/components/dashboard/user-auth-form"
+import Image from "next/dist/client/image"
 
 export default function LoginPage() {
   return (
@@ -17,16 +18,17 @@ export default function LoginPage() {
       </Link>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <Icons.logo className="mx-auto h-6 w-6" />
-          <h1 className="text-2xl font-bold">Welcome back</h1>
+          {/* <Icons.logo className="mx-auto h-6 w-6" /> */}
+          <Image className="mx-auto h-6 w-6" height={24} width={24} src="/logo.svg" alt="app logo" /> 
+          <h1 className="text-2xl font-bold">Prihlásenie</h1>
           <p className="text-sm text-slate-600">
-            Enter your email to sign in to your account
+            Zadaj svoj email pre prihlásenie
           </p>
         </div>
         <UserAuthForm />
         <p className="px-8 text-center text-sm text-slate-600">
           <Link href="/register" className="underline hover:text-brand">
-            Don&apos;t have an account? Sign Up
+            Ešte nemáš účet? Zaregistruj sa
           </Link>
         </p>
       </div>

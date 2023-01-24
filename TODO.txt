@@ -1,0 +1,6 @@
+{
+    - školy - 3
+    - každá škola má okolo 3k otazok vždy na polovicu BIO a CHEM
+    - generator
+    
+}

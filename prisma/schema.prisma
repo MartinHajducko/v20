@@ -3,13 +3,13 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  //previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider             = "mysql"
   url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  relationMode = "prisma"
 }
 
 model Account {
@@ -29,7 +29,7 @@ model Account {
   updatedAt         DateTime @default(now()) @map(name: "updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  @@index([userId])
   @@unique([provider, providerAccountId])
   @@map(name: "accounts")
 }
@@ -40,7 +40,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  @@index([userId])
   @@map(name: "sessions")
 }
 
@@ -50,6 +50,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          Role    @default(USER)
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 
@@ -81,9 +82,50 @@ model Post {
   published Boolean  @default(false)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  authorId  String
+  authorId  String?
 
-  author User @relation(fields: [authorId], references: [id])
-
+  author User? @relation(fields: [authorId], references: [id])
+  @@index([authorId])
   @@map(name: "posts")
+}
+
+model Schools {
+  id        Int @id @default(autoincrement())
+  name      String
+  questions Question[]
+  @@map(name: "schools")
+}
+
+model Question {
+  id        Int       @id @default(autoincrement())
+  school    Schools   @relation(fields: [schoolId], references: [id])
+  schoolId  Int
+  answers   Answer[]
+  category  Cat
+  text      String
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  @@index([schoolId])
+  @@map(name: "questions")
+}
+
+model Answer {
+  id        Int         @id @default(autoincrement())
+  quest     Question   @relation(fields: [questID], references: [id])
+  questID   Int         @map(name: "question_id")
+  text      String
+  isCorrect Boolean     @default(false) @map(name: "is_correct")
+  createdAt DateTime    @default(now()) @map(name: "created_at")
+  updatedAt DateTime    @default(now()) @map(name: "updated_at")
+  @@index([questID])
+  @@map(name: "answers")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Cat {
+  BIO
+  CHEM
 }

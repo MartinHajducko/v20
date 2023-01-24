@@ -1,6 +1,7 @@
 import { Icons } from "@/components/icons"
 import { User } from "@prisma/client"
 import type { Icon } from "lucide-react"
+import { UpdateServerRequest } from "postmark/dist/client/models"
 
 export type NavItem = {
   title: string
@@ -13,6 +14,7 @@ export type MainNavItem = NavItem
 export type SidebarNavItem = {
   title: string
   disabled?: boolean
+  admin?: boolean
   external?: boolean
   icon?: keyof typeof Icons
 } & (
@@ -58,4 +60,9 @@ export type UserSubscriptionPlan = SubscriptionPlan &
   Pick<User, "stripeCustomerId" | "stripeSubscriptionId"> & {
     stripeCurrentPeriodEnd: number
     isPro: boolean
+  }
+
+export type UserRole = Pick<User, "id" | "role === ADMIN"> & {
+    id: string
+    isAdmin: boolean
   }

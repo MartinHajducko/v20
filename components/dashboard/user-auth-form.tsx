@@ -40,15 +40,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     if (!signInResult?.ok) {
       return toast({
-        title: "Something went wrong.",
-        message: "Your sign in request failed. Please try again.",
+        title: "Niečo sa pokazilo.",
+        message: "Vyskytla sa chyba, skús to ešte raz",
         type: "error",
       })
     }
 
     return toast({
-      title: "Check your email",
-      message: "We sent you a login link. Be sure to check your spam too.",
+      title: "Skontroluj si e-mail",
+      message: "Zaslali sme ti odkaz na prihlásenie. Skontroluj si aj spam.",
       type: "success",
     })
   }
@@ -80,17 +80,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             )}
           </div>
           <button
-            className="inline-flex w-full items-center justify-center rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 disabled:opacity-50 dark:hover:bg-[#050708]/30 dark:focus:ring-slate-500"
+            className="inline-flex w-full items-center justify-center rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 disabled:opacity-50 dark:hover:bg-[#050708]/30 dark:focus:ring-slate-500 transition duration-250"
             disabled={isLoading}
           >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            Pokračovať
           </button>
         </div>
       </form>
-      <div className="relative">
+      
+    </div>
+  )
+}
+
+/* 
+<div className="relative">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-slate-300"></div>
         </div>
@@ -121,6 +127,4 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </svg>
         Github
       </button>
-    </div>
-  )
-}
+*/

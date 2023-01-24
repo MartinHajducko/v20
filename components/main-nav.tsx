@@ -8,6 +8,8 @@ import { MainNavItem } from "types"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/config/site"
 import { Icons } from "@/components/icons"
+import Image from "next/image"
+import Logo from "/v1.svg"
 import { MobileNav } from "@/components/mobile-nav"
 
 interface MainNavProps {
@@ -22,7 +24,7 @@ export function MainNav({ items, children }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo />
+        <Image height={24} width={24} src="/logo.svg" alt="app logo" /> 
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
