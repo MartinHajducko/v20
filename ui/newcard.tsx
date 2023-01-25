@@ -23,7 +23,7 @@ export function Newcard(props) {
     return (
         <Link
         href={path}
-        className="relative block rounded-xl border border-gray-200 p-8 shadow-lg hover:shadow-xl"
+        className="relative block rounded-xl border border-gray-200 p-8 shadow-lg hover:shadow-xl transition-duration: 300ms;"
         >
           <span
             className="absolute right-4 top-4 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
@@ -33,7 +33,7 @@ export function Newcard(props) {
 
           <div className="mt-4 sm:pr-8">
             <Image width={50} height={50} src={img} alt={"logo univerzity " + String(title) + " " + num + " " + text }/>
-            <h3 className="mt-4 text-xl font-bold text-gray-900">{title}</h3>
+            <h3 className="mt-4 text-xl font-bold uppercase text-gray-900">{title}</h3>
             <p className="mt-2 hidden text-sm sm:block">{text}</p>
           </div>
         </Link>

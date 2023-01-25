@@ -6,7 +6,7 @@ export default function DashboardBillingLoading() {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Admin panel - [dočasne takto]"
+        heading="Admin panel"
         text="-"
       />
       <div className="grid gap-10">

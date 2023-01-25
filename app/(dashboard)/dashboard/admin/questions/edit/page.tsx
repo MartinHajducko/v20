@@ -5,7 +5,7 @@ import { EditQuestionsTable } from "@/components/dashboard/edit-questions-table"
 //import { useState } from "react"
 import { db } from "@/lib/db"
 
-export const getQuestions = async () => {
+ export async function queryQuestions()  {
     return await db.question.findMany({
         include: {
             answers: true
@@ -23,7 +23,7 @@ export const getQuestions = async () => {
 
 export default async function QuestionsEditPage() {
 
-    const data = await getQuestions();
+    const data = await queryQuestions();
   //const [schoolId, setSchool] = useState("---")
   //const [category, setCat] = useState("---")
 //   let data;
@@ -38,8 +38,6 @@ export default async function QuestionsEditPage() {
         heading="Zoznam otázok"
         text=""
       />
-      
-        
         <EditQuestionsTable data={data}/>
       
     </DashboardShell>

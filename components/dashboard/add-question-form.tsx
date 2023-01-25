@@ -66,7 +66,9 @@ export function AddTask(props) {
             }
 
             router.refresh()
-
+            setQuest("");
+            setansA("");setansB("");setansC("");setansD("");setansE("");setansF("");setansG("");setansH("");
+            setcorA(false);setcorB(false);setcorC(false);setcorD(false);setcorE(false);setcorF(false);setcorG(false);setcorH(false);
             return toast({
                 message: "Otázka sa uložila.",
                 type: "success",
@@ -93,7 +95,7 @@ export function AddTask(props) {
 
                     <div className="flex flex-col basis-2/12 pl-2 font-semibold text-md self-end text-gray-700">
                         <h2 className="flex leading-relaxed self-end">Č. otázky: </h2>
-                        <input disabled type="number" className="flex py-2 px-2 self-end border focus:ring-gray-500 focus:border-gray-900 w-20 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"/>
+                        <input type="number" className="disabled flex py-2 px-2 self-end border focus:ring-gray-500 focus:border-gray-900 w-20 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"/>
                     </div>
                     
                 </div>

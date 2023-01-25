@@ -1,83 +1,86 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 //import { useForm } from "react-hook-form"
 import 'katex/dist/katex.min.css'
+import MaterialReactTable from 'material-react-table';
+import type { MRT_ColumnDef } from 'material-react-table';
+import { Box, Stack } from '@mui/material';
 import Latex from 'react-latex-next'
-import { db } from "@/lib/db";
-import { useRouter } from "next/navigation"
-import { Icons } from "@/components/icons"
-import Table from 'react-tailwind-table';
-import 'react-tailwind-table/dist/index.css';
+
+//Material-UI Imports
 import {
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    ChevronDoubleRightIcon,
-    ChevronDoubleLeftIcon
-  } from "@heroicons/react/solid";
-  import { Button, PageButton } from "./Table/Button";
-  import { SortDownIcon, SortUpIcon, SortIcon } from "./Table/Icon";
-  import { classNames } from "./Table/Utils";
-import questions from "pages/api/questions";
+  Button,
+  ListItemIcon,
+  MenuItem,
+  Typography,
+  TextField,
+} from '@mui/material';
 
 export function EditQuestionsTable(props) {
 
-    const [schoolId, setSchool] = useState("---")
-    const [category, setCat] = useState("---")
-    const data = props.data
-    console.log(data);
+  interface Question {
+    answers: {
+      id: number
+      questID: number
+      text: string
+      isCorrect: boolean
+      updatedAt: string
+    }
+    category: string
+    createdAt: string
+    id: number
+    schoolId: number
+    text: string
+  }
 
-    //if(category === "---" || schoolId === "---"){return(<></>)}
-    let inc = 0;
-    // const getData = () => [
-    //     data.map((question) => (
-    //         {
-    //            index: {inc++},
-    //            id: questions.id 
-    //         }
-    //     ))   
-    // ]
-    const columns = React.useMemo(
-        () => [
-          {
-            use: "ID otázky",
-            field: "id"
-          },
-          {
-            use: "ID školy",
-            field: "schoolId"
-          },
-          {
-            use: "Kategoria",
-            field: "category",
-          },
-          {
-            use: "Obsah otázky",
-            field: "text",
-          },
-          {
-            use: "Vytvorená",
-            field: "createdAt",
-          }
-        ],
-        []
-      );
+  const data: Question[] = props.data
+  console.log(data);
+  const columns = useMemo<MRT_ColumnDef<Question>[]>(
+    () => [
+      {
+        accessorKey: 'id',
+        header: 'ID',
+        size: 50, //small column
+      },
+      {
+        accessorKey: 'text',
+        header: 'Otázka/odpoveď',
+        size: 500,
+        Cell: ({ cell }) => (
+          <strong><Latex>{cell.getValue<string>()}</Latex></strong>
+        ),
+      },
+      {
+        accessorKey: 'schoolId',
+        header: 'ID školy',
+      },
+      {
+        accessorKey: 'category',
+        header: 'Kategoria',
+      },
+      {
+        accessorKey: 'isCorrect',
+        header: 'Je správna?',
+      },
+      
+    ],
+    [],
+  );
+    
     return (
         <>
-        {/* <Table columns={columns} data={data} /> */}
-        <div>
-          {data.map((question) => {
-            return <div key={question.id}>
-              <h1>{question.text}</h1>
-              <h2>{question.category}</h2>
-              <h3>{question.schoolId}</h3>
-              <ul>
-              {question.answers.map((answer, index) => {
-                <li key={index}>{answer.text}</li>
-              })}</ul>
-            </div>
-          })}
-        </div>
+          <MaterialReactTable
+          columns={columns}
+          data={data}
+          enableExpanding
+          getSubRows={(originalRow) => originalRow.answers} //default, can customize
+          muiTableProps={{
+            sx: {
+              tableLayout: 'fixed',
+            },
+          }}
+          ></MaterialReactTable>
         </>
     )
 }

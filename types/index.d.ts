@@ -10,6 +10,7 @@ export type NavItem = {
 }
 
 export type MainNavItem = NavItem
+export type AdminNavItem = NavItem
 
 export type SidebarNavItem = {
   title: string
@@ -48,6 +49,7 @@ export type MarketingConfig = {
 export type DashboardConfig = {
   mainNav: MainNavItem[]
   sidebarNav: SidebarNavItem[]
+  adminNav: SidebarNavItem[]
 }
 
 export type SubscriptionPlan = {

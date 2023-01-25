@@ -1,5 +1,5 @@
 import { Inter as FontSans } from "@next/font/google"
-
+import { reportWebVitals } from "@/components/metrics"
 
 import "@/styles/globals.css"
 
@@ -20,9 +20,6 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export function reportWebVitals(metric) {
-  console.log(metric)
-}
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
@@ -36,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body className="min-h-screen">
         {children}
-        
+
         <Analytics />
         <Help />
         <Toaster position="bottom-right" />
