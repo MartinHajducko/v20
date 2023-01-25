@@ -21,7 +21,7 @@ export default async function SettingsPage() {
     redirect(authOptions.pages.signIn)
   }
 
-  const getUser: object | null = await db.user.findUnique({
+/*   const getUser: object | null = await db.user.findUnique({
     where: {
       id: user.id,
     },
@@ -29,7 +29,7 @@ export default async function SettingsPage() {
       role: true,
     },
   })
-  console.log(getUser);
+  console.log(getUser); */
 
   return (
     <>
@@ -41,11 +41,6 @@ export default async function SettingsPage() {
       <div className="grid gap-10">
         <UserNameForm user={{ id: user.id, name: user.name }} />
       </div>
-      {getUser.role === 'ADMIN' && 
-      <div>
-      <RedirectButton path='/dashboard/admin' text='Admin Panel'></RedirectButton>
-      </div>
-      }
       
     </DashboardShell>
     </>

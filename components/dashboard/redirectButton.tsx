@@ -4,9 +4,9 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 
-interface RedirectButtonProps extends React.HTMLAttributes<HTMLDivElement> {}
+//interface RedirectButtonProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function RedirectButton({ className, ...props }: RedirectButtonProps) {
+export function RedirectButton({ className, ...props }) {
 
    // const router = useRouter()
     const path = props.path

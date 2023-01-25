@@ -59,10 +59,6 @@ export function EditQuestionsTable(props) {
         accessorKey: 'category',
         header: 'Kategoria',
       },
-      {
-        accessorKey: 'isCorrect',
-        header: 'Je správna?',
-      },
       
     ],
     [],
@@ -74,7 +70,7 @@ export function EditQuestionsTable(props) {
           columns={columns}
           data={data}
           enableExpanding
-          getSubRows={(originalRow) => originalRow.answers} //default, can customize
+          //getSubRows={(originalRow) => originalRow.answers} //default, can customize
           muiTableProps={{
             sx: {
               tableLayout: 'fixed',

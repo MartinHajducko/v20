@@ -23,7 +23,7 @@ export default async function AdminPage() {
               Pridávanie, úprava/mazanie otázok{" "}
             </p>
             <RedirectButton className="mr-2" path='/dashboard/admin/questions' text='Pridať'></RedirectButton>
-            <RedirectButton path='/dashboard/admin/questions/edit' text='Upraviť'></RedirectButton>
+            <RedirectButton className="" path='/dashboard/admin/questions/edit' text='Upraviť'></RedirectButton>
           </Card.Content>
         </Card>
       </div>
